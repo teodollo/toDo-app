@@ -11,6 +11,12 @@ list.addEventListener('click', (e) => {
   else if (e.target.parentNode.className === "checked") {
       e.target.parentNode.className = "check";
   }
+  else if ( e.target.parentNode.className === "cross") {
+      const crossButton = e.target.parentNode;
+      const crossLi = crossButton.parentNode;
+      const crossList = crossLi.parentNode;
+      crossList.removeChild(crossLi);
+  }
 });
 
 todoInput.addEventListener('submit', (e) =>{
