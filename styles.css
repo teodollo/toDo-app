@@ -1,0 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    height: 100%;
+    background: hsl(237, 14%, 26%);
+}
+
+.dark{
+    height: 100%;
+    background-image: url('images/bg-mobile-dark.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+header{
+  padding: 2em 2.5em;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  color: white;
+}
+
+header
+
+.theme-icon{
+    margin: auto 0 auto auto;
+}
+
+#sun{
+    display: block;
+}
+
+#moon{
+    display: none;
+}
