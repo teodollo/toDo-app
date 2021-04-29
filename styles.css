@@ -151,6 +151,7 @@ header h1{
     padding-bottom: 2vh;
     border-bottom: solid 1px hsl(233, 14%, 35%);
     margin-top: auto;
+    list-style: none;
 }
 
 .todo p{
