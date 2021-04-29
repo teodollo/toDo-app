@@ -22,7 +22,7 @@ html{
 
 /*HEADER AND H1*/
 header{
-  padding: 3em 2.5em;
+  padding: 3em 2.5em 1.8em;
   display: grid;
   grid-template-columns: 1fr 1fr;
   color: white;
@@ -55,17 +55,17 @@ header h1{
 /*CREATE NEW TASK*/
 
 /*       Input     */
-.todo-input{
+#todo-input{
     margin-left: 7vw;
     margin-right: 7vw;
     text-align: left;
     background: hsl(237, 14%, 26%);
-    border-radius: 3px;
+    border-radius: 5px;
     height: 6.5vh;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.todo-input input{
+#todo-input input{
     width: 80%;
     height: 100%;
     background-color:hsl(237, 14%, 26%);
@@ -92,6 +92,7 @@ header h1{
     min-height: 26.91px;
     max-width: 28.91px;
     max-height: 26.91px;
+    outline: none;
 }
 .check img{
     display: none;
@@ -99,17 +100,18 @@ header h1{
     margin-right:auto;
 }
     
-.check:focus{
+.checked{
+    border-radius: 50%;
+    padding: 0.5em;
+    margin-left: 5vw;
+    margin-right: 2vw;
     background: linear-gradient( 160deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
     outline: none;
     max-width: 28.91px;
     max-height: 26.91px;
-    border-color: hsl(237, 14%, 26%);
+    border: solid 2px hsl(237, 14%, 26%);
 }
 
-.check:focus img{
-    display: block;
-}
 /*----------------------------------------------------*/
 
 /*--------------------------------------------------------------------------------------------*/
@@ -130,24 +132,23 @@ header h1{
   margin-top: 2vh;
 }
 
-.todo-list{
+#todo-list{
    margin-left: 7vw;
    margin-right: 7vw;
 
    text-align: left;
    background: hsl(237, 14%, 26%);
-   border-radius: 3px;
-   height: 6.5vh;
+   border-radius: 5px;
    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .todo{
     display: grid;
-    grid-template-columns: 0.5fr 1fr 1fr;
+    grid-template-columns: 1fr 3fr 0.8fr;
     padding-top: 2vh;
-    background: hsl(237, 14%, 26%);
     padding-bottom: 2vh;
     border-bottom: solid 1px hsl(233, 14%, 35%);
+    margin-top: auto;
 }
 
 .todo p{
