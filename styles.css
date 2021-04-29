@@ -1,20 +1,23 @@
 *{
     margin: 0;
     padding: 0;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 html{
     height: 100%;
     background: hsl(237, 14%, 26%);
 }
-
+/*BACKGROUND IMAGE FOR DARK MODE*/
 .dark{
     height: 100%;
     background-image: url('images/bg-mobile-dark.jpg');
     background-repeat: no-repeat;
     background-size: 100% auto;
 }
+/*-------------------------------------------------------*/
 
+/*HEADER AND H1*/
 header{
   padding: 2em 2.5em;
   display: grid;
@@ -22,8 +25,15 @@ header{
   color: white;
 }
 
-header
+header h1{
+    font-weight: 700;
+    font-size: 22px;
+    margin: auto auto auto 0;
+}
+/*--------------------------------------------*/
 
+
+/*LIGHT MODE AND DARK MODE*/
 .theme-icon{
     margin: auto 0 auto auto;
 }
@@ -35,3 +45,32 @@ header
 #moon{
     display: none;
 }
+/*--------------------------------------*/
+
+/*CHECK BUTTON*/
+button{
+    border-radius: 50%;
+    padding: 0.7em;
+    background: transparent;
+    background-repeat: no-repeat;
+    border: solid 2.3px grey;
+    min-width: 34.25px;
+    min-height: 32.25px;
+}
+button img{
+    display: block;
+    transform:scale(1.2);
+    margin-right:auto;
+}
+    
+button:focus{
+    background: linear-gradient( 160deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    outline: none;
+    max-width: 34.25px;
+    max-height: 32.25px;
+}
+
+button:focus img{
+    display: block;
+}
+/*-------------------------------------------------------------------------------------------*/
