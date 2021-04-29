@@ -130,16 +130,18 @@ header h1{
 
 .todo-table{
   margin-top: 2vh;
+  background: hsl(237, 14%, 26%);
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-left: 7vw;
+  margin-right: 7vw;
 }
 
 #todo-list{
-   margin-left: 7vw;
-   margin-right: 7vw;
+
 
    text-align: left;
-   background: hsl(237, 14%, 26%);
-   border-radius: 5px;
-   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 
 .todo{
@@ -157,5 +159,21 @@ header h1{
     font-size: 13px;
     font-weight: 400;
     color: white;
+}
+
+.end-of-list{
+    margin: auto;
+    color: grey;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1vw;
+    justify-content: space-between;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+}
+
+.end-of-list p{
+    margin-left: auto;
+    margin-right: auto;
 }
 
