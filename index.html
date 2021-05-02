@@ -20,16 +20,16 @@
 
   <main class="todo-container">
       <form id ="todo-input">
-          <button class = "check"><img src = "images/icon-check.svg"></button>
+          <button type = "submit" class = "check"><img src = "images/icon-check.svg"></button>
           <input id = "input" type = "text" autocomplete="off" placeholder="Create a new todo...">
       </form>
       <div class="todo-table">
           <ul id ="todo-list">
 
         </ul>
-        <div class="end-of-list">
-            <p>items left</p>
-            <p>Clear Completed</p>
+        <div id = "end-of-list">
+            <p id = end-p>items left</p>
+            <button id = end-button>Clear Completed</button>
         </div>
 
 
