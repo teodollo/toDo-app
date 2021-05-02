@@ -15,10 +15,11 @@ const html = document.querySelector("HTML");
 //Clear Completed
 endList.addEventListener('click', (e) => {
     if ( e.target.id === "end-button" ) {
+    //checked clear function running 5 times to clear everything 
+    for (let i = 0; i < 5; i++) {
       checkedClear();
-      checkedClear();
-      checkedClear();
-      checkedClear();
+      
+    }
     }
 });
 
