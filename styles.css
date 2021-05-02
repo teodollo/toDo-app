@@ -162,7 +162,7 @@ header h1{
     color: white;
 }
 
-.end-of-list{
+#end-of-list{
     margin: auto;
     color: grey;
     display: grid;
@@ -173,8 +173,16 @@ header h1{
     padding-bottom: 2vh;
 }
 
-.end-of-list p{
-    margin-left: auto;
+#end-of-list p{
     margin-right: auto;
+}
+
+#end-of-list button{
+    margin-left: auto;
+    border: none;
+    color: grey;
+    background-color: hsl(237, 14%, 26%);
+    outline: none;
+    height: 100%;
 }
 
