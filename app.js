@@ -64,14 +64,13 @@ list.addEventListener('click', (e) => {
       const crossList = crossLi.parentNode;
       crossList.removeChild(crossLi);
       removeItemLocalStorage(crossLi);
-      //removeItemLocalStorage(crossLi);
   }
 });
 
 //------------------------------------------------------
 
 
-//when theres a submit or click event in window check items left function is activated
+//when theres a submit or click EVENT in window check items left function is activated
 
 window.addEventListener('submit', () => {
     itemsLeft();
@@ -99,7 +98,7 @@ todoInput.addEventListener('submit', (e) =>{
 
 //---------------------------------------------------
 
-//event Listener for filter section where you filter out by all, active or completed tasks
+//Event Listener for filter section where you filter out by all, active or completed tasks
 
 filter.addEventListener('click', (e) => {
     if (e.target.id === "all-filter") {
@@ -114,11 +113,6 @@ filter.addEventListener('click', (e) => {
 });
 
 //--------------------------------------------------------------------------------
-
-
-
-//------------------------------------------------------------//
-
 
 
 
