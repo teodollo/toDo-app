@@ -244,7 +244,7 @@ function showCompleted() {
 }
 //--------------------------------------------------------------------
 
-  //Function that removes items from local storage with clear completed or by crossing out
+//Function that removes items from local storage with clear completed or by crossing out
   
 function removeItemLocalStorage(string) {
     for (let i = 0; i < itemsArray.length; i++) {
@@ -258,6 +258,7 @@ function removeItemLocalStorage(string) {
 //-------------------------------------------------------------------//
 
 //Functions that SAVES or REMOVES checkmarks from Local Storage
+
 function saveCheck(string) {
     for (let i = 0; i < itemsArray.length; i++) {
         if (itemsArray[i][0] === string ) {
@@ -278,6 +279,8 @@ function removeCheck(string) {
 
 //-------------------------------------------------------------------------------
 
+//Function that assign color to filter buttons based on which one is active
+
 function filterColor(target) {
     if (target.id === "all-filter") {
         target.style.color = "hsl(220, 98%, 61%)";
@@ -292,4 +295,6 @@ function filterColor(target) {
         allFilter.style.color = "hsl(234, 11%, 52%)";
         activeFilter.style.color = "hsl(234, 11%, 52%)";
     }
-}
+};
+
+//---------------------------------------------------------------
