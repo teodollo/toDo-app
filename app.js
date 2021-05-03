@@ -13,8 +13,18 @@ const completedFilter = document.getElementById("completed-filter");
 
 //------------------------------------------------------------//
 
-//------------TESTING AREA-------------------//
+//------------LOCAL STORAGE-------------------//
 
+let itemsArray = localStorage.getItem('items')
+  ? JSON.parse(localStorage.getItem('items'))
+  : [];
+
+localStorage.setItem('items', JSON.stringify(itemsArray));
+const data = JSON.parse(localStorage.getItem('items'));
+
+data.forEach((item) => {
+    createLi(item);
+  });
 
 //--------------------------------------------//
 
@@ -52,6 +62,7 @@ list.addEventListener('click', (e) => {
       const crossLi = crossButton.parentNode;
       const crossList = crossLi.parentNode;
       crossList.removeChild(crossLi);
+      removeItemLocalStorage(crossLi);
   }
 });
 
@@ -71,13 +82,15 @@ window.addEventListener('click', () => {
 //-----------------------------------------------------------------
 
 
-//list creation Event Listener
+//LIST CREATE Event Listener
 
 todoInput.addEventListener('submit', (e) =>{
     e.preventDefault();
 
     if(input.value) {
-    createLi(input.value);
+      itemsArray.push(input.value);
+      localStorage.setItem('items', JSON.stringify(itemsArray));
+      createLi(input.value);
     }
     input.value = "";
 });
@@ -99,6 +112,7 @@ filter.addEventListener('click', (e) => {
 });
 
 //--------------------------------------------------------------------------------
+
 
 
 //------------------------------------------------------------//
@@ -181,7 +195,7 @@ function clearCompleted() {
            const liCheck = li.childNodes[0];
            if ( liCheck.className === "checked" ) {
              list.removeChild(liCheck.parentNode);
-           
+             removeItemLocalStorage(liCheck.parentNode);
           }
         }
     }
@@ -192,52 +206,58 @@ function clearCompleted() {
 
 
 
-  //function that shows all todo tasks completed and active alike//
+//Function that shows all todo tasks completed and active alike//
 
-  function showAll() {
-      for (let i = 0; i < list.children.length; i++) {
-          if (list.children[i].style.display === "none") {
-              list.children[i].style.display = "grid";
-          }
-      }
-  }
-
-  //----------------------------------------------------------------//
-
-
-  //function to show all active todo tasks and filter out completed tasks
-
-  function showActive() {
-      for (let i = 0; i < list.children.length; i++) {
-          if (list.children[i].childNodes[0].className === "checked") {
-              list.children[i].style.display = "none";
-          } else {
-              list.children[i].style.display = "grid";
-          }
-      }
-  }
-
-  //------------------------------------------------------------------//
-
-  filter.addEventListener('click', (e) => {
-    if (e.target.id === "all-filter") {
-        showAll();
-    } else if (e.target.id === "active-filter") {
-        showActive();
-    } else if (e.target.id === "completed-filter") {
-        showCompleted();
+function showAll() {
+    for (let i = 0; i < list.children.length; i++) {
+        if (list.children[i].style.display === "none") {
+            list.children[i].style.display = "grid";
+        }
     }
-});
+}
 
-  function showCompleted() {
-      for (let i = 0; i < list.children.length; i++) {
-          if (list.children[i].childNodes[0].className === "check") {
-              list.children[i].style.display = "none";
-          } else {
-              list.children[i].style.display = "grid";
-          }
-      }
-  }
+//----------------------------------------------------------------//
+
+
+//Function to show all active todo tasks and filter out completed tasks
+
+function showActive() {
+    for (let i = 0; i < list.children.length; i++) {
+        if (list.children[i].childNodes[0].className === "checked") {
+            list.children[i].style.display = "none";
+        } else {
+            list.children[i].style.display = "grid";
+        }
+    }
+}
+
+//------------------------------------------------------------------//
+
+
+//Function that shows only completed todo tasks
+
+function showCompleted() {
+    for (let i = 0; i < list.children.length; i++) {
+        if (list.children[i].childNodes[0].className === "check") {
+            list.children[i].style.display = "none";
+        } else {
+            list.children[i].style.display = "grid";
+        }
+    }
+}
+//--------------------------------------------------------------------
+
+  //Function that removes items from local storage with clear completed or by crossing out
+  
+function removeItemLocalStorage(string) {
+    for (let i = 0; i < itemsArray.length; i++) {
+        const index = itemsArray.indexOf(string.textContent);
+        if (itemsArray[i] === string.textContent ) {
+            itemsArray.splice(index, 1);
+            localStorage.setItem('items', JSON.stringify(itemsArray));
+        }
+    }
+}
 
 //-------------------------------------------------------------------//
 
