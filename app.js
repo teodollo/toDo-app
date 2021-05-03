@@ -23,7 +23,7 @@ localStorage.setItem('items', JSON.stringify(itemsArray));
 const data = JSON.parse(localStorage.getItem('items'));
 
 data.forEach((item) => {
-    createLi(item);
+    createLi(item[0], item[1]);
   });
 
 //--------------------------------------------//
@@ -51,10 +51,11 @@ endList.addEventListener('click', (e) => {
 list.addEventListener('click', (e) => {
   if (e.target.className === "check") {
       e.target.className = "checked";
-
+      saveCheck(e.target.nextElementSibling.textContent);
   }
   else if (e.target.parentNode.className === "checked") {
       e.target.parentNode.className = "check";
+      removeCheck(e.target.parentNode.nextElementSibling.textContent);
   }
   //when cross is clicked list item removed from ul
   else if ( e.target.parentNode.className === "cross") {
@@ -63,6 +64,7 @@ list.addEventListener('click', (e) => {
       const crossList = crossLi.parentNode;
       crossList.removeChild(crossLi);
       removeItemLocalStorage(crossLi);
+      //removeItemLocalStorage(crossLi);
   }
 });
 
@@ -88,7 +90,7 @@ todoInput.addEventListener('submit', (e) =>{
     e.preventDefault();
 
     if(input.value) {
-      itemsArray.push(input.value);
+      itemsArray.push([input.value, "check"]);
       localStorage.setItem('items', JSON.stringify(itemsArray));
       createLi(input.value);
     }
@@ -126,14 +128,14 @@ itemsLeft();
 
 //Function that creates List items
 
-function createLi(todo) {
+function createLi(todo, check = "check") {
     //create a list item and give it classname todo
     const li = document.createElement("LI");
     li.className = "todo";
     
     //creating the button that will store the check mark image
     const button = document.createElement("BUTTON");
-    button.className = "check";
+    button.className = check;
     const img = document.createElement("IMG");
     img.setAttribute("src", "images/icon-check.svg");
     button.appendChild(img);
@@ -196,6 +198,7 @@ function clearCompleted() {
            if ( liCheck.className === "checked" ) {
              list.removeChild(liCheck.parentNode);
              removeItemLocalStorage(liCheck.parentNode);
+             removeItemLocalStorage(liCheck.parentNode);
           }
         }
     }
@@ -251,9 +254,8 @@ function showCompleted() {
   
 function removeItemLocalStorage(string) {
     for (let i = 0; i < itemsArray.length; i++) {
-        const index = itemsArray.indexOf(string.textContent);
-        if (itemsArray[i] === string.textContent ) {
-            itemsArray.splice(index, 1);
+        if (itemsArray[i][0] === string.textContent ) {
+            itemsArray.splice(i, 1);
             localStorage.setItem('items', JSON.stringify(itemsArray));
         }
     }
@@ -261,5 +263,24 @@ function removeItemLocalStorage(string) {
 
 //-------------------------------------------------------------------//
 
+//Functions that SAVES or REMOVES checkmarks from Local Storage
+function saveCheck(string) {
+    for (let i = 0; i < itemsArray.length; i++) {
+        if (itemsArray[i][0] === string ) {
+            itemsArray[i].splice(1,1, "checked");
+            localStorage.setItem('items', JSON.stringify(itemsArray));
+        }
+    }
+}
 
+function removeCheck(string) {
+    for (let i = 0; i < itemsArray.length; i++) {
+        if (itemsArray[i][0] === string ) {
+            itemsArray[i].splice(1,1, "check");
+            localStorage.setItem('items', JSON.stringify(itemsArray));
+        }
+    }
+}
+
+//-------------------------------------------------------------------------------
 
