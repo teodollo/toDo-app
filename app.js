@@ -192,7 +192,6 @@ function clearCompleted() {
         if ( liCheck.className === "checked" ) {
             list.removeChild(liCheck.parentNode);
             removeItemLocalStorage(liCheck.parentNode);
-            removeItemLocalStorage(liCheck.parentNode);
         }
     }
 }
@@ -251,6 +250,7 @@ function removeItemLocalStorage(string) {
         if (itemsArray[i][0] === string.textContent ) {
             itemsArray.splice(i, 1);
             localStorage.setItem('items', JSON.stringify(itemsArray));
+            break
         }
     }
 }
@@ -264,6 +264,7 @@ function saveCheck(string) {
         if (itemsArray[i][0] === string ) {
             itemsArray[i].splice(1,1, "checked");
             localStorage.setItem('items', JSON.stringify(itemsArray));
+            break
         }
     }
 }
