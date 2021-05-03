@@ -161,7 +161,7 @@ header h1{
 /* Items left and Clear Completed----*/
 #end-of-list{
     margin: auto;
-    color: grey;
+    color: hsl(234, 11%, 52%);
     display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 1vw;
@@ -179,29 +179,45 @@ header h1{
     margin-left: auto;
     margin-right: 8%;
     border: none;
-    color: grey;
+    color: hsl(234, 11%, 52%);
     background-color: hsl(237, 14%, 26%);
     outline: none;
     height: 100%;
 }
 
+
+
 /*-------------------------*/
 
 #filter{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr 1.4fr;
     margin-top: 2vh;
     background: hsl(237, 14%, 26%);
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-left: 7vw;
     margin-right: 7vw;
-    padding-top: 2vh;
-    padding-bottom: 2vh;
+    padding: 2vh 0 ;
 }
 
 #filter button{
     background-color: hsl(237, 14%, 26%);
+    font-size: 16px;
+    font-weight: 700;
     border: none;
     outline: none;
+}
+
+#all-filter {
+    color: hsl(220, 98%, 61%);
+    text-align: right;
+}
+
+#active-filter, #completed-filter{
+    color: hsl(234, 11%, 52%);
+}
+
+#completed-filter{
+    text-align: left;
 }
