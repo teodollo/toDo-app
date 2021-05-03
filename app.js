@@ -70,7 +70,7 @@ list.addEventListener('click', (e) => {
 //------------------------------------------------------
 
 
-//when theres a submit or click EVENT in window check items left function is activated
+//when theres a submit or click EVENT in window, the check items left function is activated
 
 window.addEventListener('submit', () => {
     itemsLeft();
