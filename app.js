@@ -6,24 +6,38 @@ const list = document.getElementById("todo-list");
 const todo = document.getElementsByClassName("todo");
 const endList = document.getElementById("end-of-list")
 const html = document.querySelector("HTML");
+const filter = document.getElementById("filter");
+const allFilter = document.getElementById("all-filter");
+const activeFilter = document.getElementById("active-filter");
+const completedFilter = document.getElementById("completed-filter");
 
 //------------------------------------------------------------//
+
+//------------TESTING AREA-------------------//
+
+
+//--------------------------------------------//
 
 
 //--------------------EVENT LISTENER------------------------//
 
 //Clear Completed
+
 endList.addEventListener('click', (e) => {
     if ( e.target.id === "end-button" ) {
     //checked clear function running 5 times to clear everything 
     for (let i = 0; i < 5; i++) {
-      checkedClear();
+      clearCompleted();
       
     }
     }
 });
 
+//-------------------------------------------------------
+
+
 //List items.
+
 list.addEventListener('click', (e) => {
   if (e.target.className === "check") {
       e.target.className = "checked";
@@ -41,17 +55,24 @@ list.addEventListener('click', (e) => {
   }
 });
 
-//when theres a submit in window check items function is activated
+//------------------------------------------------------
+
+
+//when theres a submit or click event in window check items left function is activated
+
 window.addEventListener('submit', () => {
-    checkItems();
+    itemsLeft();
 });
 
-//when theres a click event in window check items function is activated
 window.addEventListener('click', () => {
-    checkItems();
+    itemsLeft();
 });
+
+//-----------------------------------------------------------------
+
 
 //list creation Event Listener
+
 todoInput.addEventListener('submit', (e) =>{
     e.preventDefault();
 
@@ -61,6 +82,25 @@ todoInput.addEventListener('submit', (e) =>{
     input.value = "";
 });
 
+//---------------------------------------------------
+
+//event Listener for filter section where you filter out by all, active or completed tasks
+
+filter.addEventListener('click', (e) => {
+    if (e.target.id === "all-filter") {
+        showAll();
+    } 
+    else if (e.target.id === "active-filter") {
+        showActive();
+    }
+    else if (e.target.id === "completed-filter") {
+        showCompleted();
+    }
+});
+
+//--------------------------------------------------------------------------------
+
+
 //------------------------------------------------------------//
 
 
@@ -68,9 +108,10 @@ todoInput.addEventListener('submit', (e) =>{
 
 //--------------------------FUNCTIONS----------------------- //
 
-checkItems();
+itemsLeft();
 
 //Function that creates List items
+
 function createLi(todo) {
     //create a list item and give it classname todo
     const li = document.createElement("LI");
@@ -104,10 +145,13 @@ function createLi(todo) {
     list.appendChild(li);
 }
 
+//-----------------------------------------------------------
+
 
 
 //Function that check of many items are left in ul
-function checkItems() {
+
+function itemsLeft() {
     const endP = endList.children[0];
     const li = list.children;
 
@@ -120,8 +164,12 @@ function checkItems() {
     }
 }
 
+//-------------------------------------------------------
+
+
 //Function that clears checked list items
-function checkedClear() {
+
+function clearCompleted() {
     const endClear = endList.children[1];
     const endP = endList.children[0];
  
@@ -131,14 +179,65 @@ function checkedClear() {
            const li = list.children[i];
  
            const liCheck = li.childNodes[0];
-           if (list.children.length > 0){
            if ( liCheck.className === "checked" ) {
              list.removeChild(liCheck.parentNode);
-           }
+           
           }
         }
     }
 }
+
+//-------------------------------------------------------------
+
+
+
+
+  //function that shows all todo tasks completed and active alike//
+
+  function showAll() {
+      for (let i = 0; i < list.children.length; i++) {
+          if (list.children[i].style.display === "none") {
+              list.children[i].style.display = "grid";
+          }
+      }
+  }
+
+  //----------------------------------------------------------------//
+
+
+  //function to show all active todo tasks and filter out completed tasks
+
+  function showActive() {
+      for (let i = 0; i < list.children.length; i++) {
+          if (list.children[i].childNodes[0].className === "checked") {
+              list.children[i].style.display = "none";
+          } else {
+              list.children[i].style.display = "grid";
+          }
+      }
+  }
+
+  //------------------------------------------------------------------//
+
+  filter.addEventListener('click', (e) => {
+    if (e.target.id === "all-filter") {
+        showAll();
+    } else if (e.target.id === "active-filter") {
+        showActive();
+    } else if (e.target.id === "completed-filter") {
+        showCompleted();
+    }
+});
+
+  function showCompleted() {
+      for (let i = 0; i < list.children.length; i++) {
+          if (list.children[i].childNodes[0].className === "check") {
+              list.children[i].style.display = "none";
+          } else {
+              list.children[i].style.display = "grid";
+          }
+      }
+  }
 
 //-------------------------------------------------------------------//
 
