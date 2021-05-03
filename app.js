@@ -14,7 +14,6 @@ const activeFilter = document.getElementById("active-filter");
 const completedFilter = document.getElementById("completed-filter");
 
 //------------------------------------------------------------//
-import Sortable from 'sortablejs/modular/sortable.core.esm'
 //------------LOCAL STORAGE-------------------//
 
 let itemsArray = localStorage.getItem('items')
