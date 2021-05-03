@@ -46,7 +46,7 @@ endList.addEventListener('click', (e) => {
 //-------------------------------------------------------
 
 
-//List items.
+//List items
 
 list.addEventListener('click', (e) => {
   if (e.target.className === "check") {
@@ -99,7 +99,7 @@ todoInput.addEventListener('submit', (e) =>{
 //---------------------------------------------------
 
 //Event Listener for filter section where you filter out by all, active or completed tasks
-
+//Also changes color on filter text based on what filter is active
 filter.addEventListener('click', (e) => {
     if (e.target.id === "all-filter") {
         showAll();
@@ -110,6 +110,7 @@ filter.addEventListener('click', (e) => {
     else if (e.target.id === "completed-filter") {
         showCompleted();
     }
+    filterColor(e.target);
 });
 
 //--------------------------------------------------------------------------------
@@ -186,16 +187,15 @@ function clearCompleted() {
     
     if (endClear) {
         for (let i = 0; i <= list.children.length - 1; i++) {
-           const li = list.children[i];
- 
-           const liCheck = li.childNodes[0];
-           if ( liCheck.className === "checked" ) {
-             list.removeChild(liCheck.parentNode);
-             removeItemLocalStorage(liCheck.parentNode);
-             removeItemLocalStorage(liCheck.parentNode);
-          }
+            const li = list.children[i];
+            const liCheck = li.childNodes[0];
+        if ( liCheck.className === "checked" ) {
+            list.removeChild(liCheck.parentNode);
+            removeItemLocalStorage(liCheck.parentNode);
+            removeItemLocalStorage(liCheck.parentNode);
         }
     }
+}
 }
 
 //-------------------------------------------------------------
@@ -278,3 +278,18 @@ function removeCheck(string) {
 
 //-------------------------------------------------------------------------------
 
+function filterColor(target) {
+    if (target.id === "all-filter") {
+        target.style.color = "hsl(220, 98%, 61%)";
+        activeFilter.style.color = "hsl(234, 11%, 52%)";
+        completedFilter.style.color = "hsl(234, 11%, 52%)";
+    } else if (target.id === "active-filter") {
+        target.style.color = "hsl(220, 98%, 61%)";
+        allFilter.style.color = "hsl(234, 11%, 52%)";
+        completedFilter.style.color = "hsl(234, 11%, 52%)";
+    } else if (target.id === "completed-filter") {
+        target.style.color = "hsl(220, 98%, 61%)";
+        allFilter.style.color = "hsl(234, 11%, 52%)";
+        activeFilter.style.color = "hsl(234, 11%, 52%)";
+    }
+}
