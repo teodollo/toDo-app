@@ -1,4 +1,6 @@
+
 //--------------------DOM ELEMENTS-------------------------//
+
 
 const todoInput = document.getElementById("todo-input");
 const input = document.getElementById("input");
@@ -12,7 +14,7 @@ const activeFilter = document.getElementById("active-filter");
 const completedFilter = document.getElementById("completed-filter");
 
 //------------------------------------------------------------//
-
+import Sortable from 'sortablejs/modular/sortable.core.esm'
 //------------LOCAL STORAGE-------------------//
 
 let itemsArray = localStorage.getItem('items')
@@ -250,7 +252,7 @@ function removeItemLocalStorage(string) {
         if (itemsArray[i][0] === string.textContent ) {
             itemsArray.splice(i, 1);
             localStorage.setItem('items', JSON.stringify(itemsArray));
-            break
+           break
         }
     }
 }
@@ -299,3 +301,6 @@ function filterColor(target) {
 };
 
 //---------------------------------------------------------------
+
+    
+  
