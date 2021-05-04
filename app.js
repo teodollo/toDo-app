@@ -5,6 +5,7 @@ const sun = document.getElementById("sun");
 const moon = document.getElementById("moon");
 const todoInput = document.getElementById("todo-input");
 const input = document.getElementById("input");
+const button = document.getElementsByClassName("check")
 const list = document.getElementById("todo-list");
 const table = document.querySelector(".todo-table");
 const todo = document.getElementsByClassName("todo");
@@ -376,6 +377,8 @@ function filterColor(target) {
         endListButton.style.backgroundColor = "white";
         for (let i = 0; i < list.children.length; i++) {
             todoP[i].style.color = "black";
+            todo[i].style.borderBottomColor = "hsl(233, 13%, 87%)";
+            todo[i].childNodes[0].style.borderColor = "hsl(233, 13%, 87%)";
         }
     } else if (e.target.id === "moon") {
         moon.style.display = "none";
@@ -387,10 +390,12 @@ function filterColor(target) {
         allFilter.style.backgroundColor = "hsl(237, 14%, 26%)";
         activeFilter.style.backgroundColor = "hsl(237, 14%, 26%)";
         completedFilter.style.backgroundColor = "hsl(237, 14%, 26%)";
-        body.style.backgroundColor = "hsl(237, 14%, 26%)";
+        body.style.backgroundColor = "hsl(235, 24%, 19%)";
         endListButton.style.backgroundColor = "hsl(237, 14%, 26%)";
         for (let i = 0; i < list.children.length; i++) {
             todoP[i].style.color = "white";
+            todo[i].style.borderBottomColor = "hsl(233, 14%, 35%)";
+            todo[i].childNodes[0].style.borderColor = "hsl(233, 14%, 35%)";
         }
     }
   }
