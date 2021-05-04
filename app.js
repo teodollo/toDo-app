@@ -21,10 +21,7 @@ const completedFilter = document.getElementById("completed-filter");
 //------------------------------------------------------------//
 //------------------TestArea-----------------------------------//
 
-document.addEventListener('click', (e) =>{
 
-  lightAndDarkMode(e);
-})
 
 //------------LOCAL STORAGE-------------------//
 
@@ -58,6 +55,13 @@ endList.addEventListener('click', (e) => {
 
 //-------------------------------------------------------
 
+//Toggle light and dark mode
+
+document.addEventListener('click', (e) =>{
+    lightAndDarkMode(e);
+})
+
+//--------------------------------------------
 
 //List items
 
