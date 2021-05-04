@@ -228,6 +228,14 @@ header h1{
     text-align: left;
 }
 
+.sortable-chosen, sortable-chosen.sortable-ghost {
+    opacity: 0;
+}
+.sortable-ghost {
+  background-color: transparent;
+  opacity: 1;
+}
+
 @media screen and (min-width: 768px) {
     .dark {
         background-image: url(images/bg-desktop-dark.jpg) !important;
@@ -254,7 +262,7 @@ header h1{
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 334px) {
     #todo-input input {
         width: 75%;
     }
