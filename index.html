@@ -46,7 +46,10 @@
 <script>
     const dragArea = document.getElementById("todo-list");
     new Sortable (dragArea, {
-        animation: 300
+        animation: 150,
+        ghostClass: "sortable-ghost",
+        chosenClass: "sortable-chosen",
+        dragClass: "sortable-drag"
     })
 </script>
 </html>
