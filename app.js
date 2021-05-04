@@ -25,7 +25,7 @@ const completedFilter = document.getElementById("completed-filter");
 
 //------------LOCAL STORAGE-------------------//
 
-//----------------List State Storage-----------//
+//----------------List Storage
 
 let itemsArray = localStorage.getItem('items')
   ? JSON.parse(localStorage.getItem('items'))
@@ -38,9 +38,8 @@ data.forEach((item) => {
     createLi(item[0], item[1]);
   });
 
-//--------------------------------------------//
 
-//------------------Light And Dark Mode Storage-----------------------------------//
+//------------------Light And Dark Mode Storage
 
 let moonArray = localStorage.getItem('moon')
   ? JSON.parse(localStorage.getItem('moon'))
@@ -51,72 +50,39 @@ let moonData = JSON.parse(localStorage.getItem("moon"));
 
 localStorage.setItem('moon', JSON.stringify(moonArray) );
 
-lightAndDarkMode(moonData[0]);
+//the function is ran with local storage data that is either sun or moon
+lightAndDarkMode(moonData);
 
-//--------------------------------------------//
+
 //---------------------------------------------------------------//
+
+
+
 
 //--------------------EVENT LISTENER------------------------//
 
-//Clear Completed
 
-endList.addEventListener('click', (e) => {
-    if ( e.target.id === "end-button" ) {
-    //checked clear function running 5 times to clear everything 
-    for (let i = 0; i < 5; i++) {
-      clearCompleted();
-      
-    }
-    }
-});
-
-//-------------------------------------------------------
-
-//Toggle light and dark mode
+//Toggle Light And Dark Mode
 
 document.addEventListener('click', (e) =>{
     if(e.target.id === "sun") {
-        moonArray = ["sun"];
+        moonArray = "sun";
         localStorage.setItem('moon', JSON.stringify(moonArray));
         lightAndDarkMode("sun");
     } if (e.target.id === "moon") {
-        moonArray = ["moon"];
+        moonArray = "moon";
         localStorage.setItem('moon', JSON.stringify(moonArray));
         lightAndDarkMode("moon");
     }
-    
 })
 
 //--------------------------------------------
-
-//List items
-
-list.addEventListener('click', (e) => {
-  if (e.target.className === "check") {
-      e.target.className = "checked";
-      saveCheck(e.target.nextElementSibling.textContent);
-  }
-  else if (e.target.parentNode.className === "checked") {
-      e.target.parentNode.className = "check";
-      removeCheck(e.target.parentNode.nextElementSibling.textContent);
-  }
-  //when cross is clicked list item removed from ul
-  else if ( e.target.parentNode.className === "cross") {
-      const crossButton = e.target.parentNode;
-      const crossLi = crossButton.parentNode;
-      const crossList = crossLi.parentNode;
-      crossList.removeChild(crossLi);
-      removeItemLocalStorage(crossLi);
-  }
-});
-
-//------------------------------------------------------
-
 
 //when theres a submit or click EVENT in window, the check items left function is activated
 
 window.addEventListener('submit', () => {
     itemsLeft();
+    lightAndDarkMode(moonArray);
 });
 
 window.addEventListener('click', () => {
@@ -124,7 +90,6 @@ window.addEventListener('click', () => {
 });
 
 //-----------------------------------------------------------------
-
 
 //LIST CREATE Event Listener
 
@@ -152,22 +117,28 @@ todoInput.addEventListener('submit', (e) =>{
 
 //---------------------------------------------------
 
-//Event Listener for filter section where you filter out by all, active or completed tasks
-//Also changes color on filter text based on what filter is active
-filter.addEventListener('click', (e) => {
-    if (e.target.id === "all-filter") {
-        showAll();
-    } 
-    else if (e.target.id === "active-filter") {
-        showActive();
-    }
-    else if (e.target.id === "completed-filter") {
-        showCompleted();
-    }
-    filterColor(e.target);
-});
+//List item interactions: Checking, unchecking and removal
 
-//--------------------------------------------------------------------------------
+list.addEventListener('click', (e) => {
+    if (e.target.className === "check") {
+        e.target.className = "checked";
+        saveCheck(e.target.nextElementSibling.textContent);
+    }
+    else if (e.target.parentNode.className === "checked") {
+        e.target.parentNode.className = "check";
+        removeCheck(e.target.parentNode.nextElementSibling.textContent);
+    }
+    //when cross is clicked list item removed from ul
+    else if ( e.target.parentNode.className === "cross") {
+        const crossButton = e.target.parentNode;
+        const crossLi = crossButton.parentNode;
+        const crossList = crossLi.parentNode;
+        crossList.removeChild(crossLi);
+        removeItemLocalStorage(crossLi);
+    }
+});
+  
+//------------------------------------------------------
 
 //Event listener that listens for drag and drop which reoders list
 list.addEventListener('dragstart', function(e)  {
@@ -188,12 +159,44 @@ list.addEventListener('touchmove', () => {
 
 //-------------------------------------------------------------------------------
 
+//Clear Completed
+
+endList.addEventListener('click', (e) => {
+    if ( e.target.id === "end-button" ) {
+    //checked clear function running 5 times to clear everything 
+      for (let i = 0; i < 5; i++) {
+        clearCompleted();
+      }
+    }
+});
+
+//-------------------------------------------------------
+    
+
+//Event Listener for filter section where you filter out by all, active or completed tasks
+//Also changes color on filter text based on what filter is active
+filter.addEventListener('click', (e) => {
+    if (e.target.id === "all-filter") {
+        showAll();
+    } 
+    else if (e.target.id === "active-filter") {
+        showActive();
+    }
+    else if (e.target.id === "completed-filter") {
+        showCompleted();
+    }
+    filterColor(e.target);
+});
+
+//--------------------------------------------------------------------------------
+
+
 
 //--------------------------FUNCTIONS----------------------- //
 
 itemsLeft();
 
-//Function that creates List items
+//CREATE LIST ELEMENT
 
 function createLi(todo, check = "check") {
     //create a list item and give it classname todo
@@ -232,8 +235,7 @@ function createLi(todo, check = "check") {
 //-----------------------------------------------------------
 
 
-
-//Function that check of many items are left in ul
+//ITEMS LEFT IN LIST
 
 function itemsLeft() {
     const endP = endList.children[0];
@@ -250,7 +252,7 @@ function itemsLeft() {
 
 //-------------------------------------------------------
 
-//Function that checks for order of list items and pushes the new order to itemsArray
+//REORDER LIST
 
 function reorderList() {
     for (let i = 0; i < list.children.length; i++) {
@@ -263,7 +265,7 @@ function reorderList() {
 
 //-----------------------------------------------------------------------------
 
-//Function that clears checked list items
+//CLEAR CHECKED ITEMS
 
 function clearCompleted() {
     const endClear = endList.children[1];
@@ -286,8 +288,7 @@ function clearCompleted() {
 
 
 
-
-//Function that shows all tasks//
+//SHOW ALL TASKS
 
 function showAll() {
     for (let i = 0; i < list.children.length; i++) {
@@ -299,8 +300,7 @@ function showAll() {
 
 //----------------------------------------------------------------//
 
-
-//Function to shows only active todo tasks
+//SHOW ACTIVE TASKS
 
 function showActive() {
     for (let i = 0; i < list.children.length; i++) {
@@ -314,8 +314,7 @@ function showActive() {
 
 //------------------------------------------------------------------//
 
-
-//Function that shows only completed todo tasks
+//SHOW COMPLETED TASKS
 
 function showCompleted() {
     for (let i = 0; i < list.children.length; i++) {
@@ -328,7 +327,7 @@ function showCompleted() {
 }
 //--------------------------------------------------------------------
 
-//Function that removes items from local storage with clear completed or by crossing out
+//REMOVE LIST ITEMS FROM LOCAL STORAGE
   
 function removeItemLocalStorage(string) {
     for (let i = 0; i < itemsArray.length; i++) {
@@ -342,7 +341,7 @@ function removeItemLocalStorage(string) {
 
 //-------------------------------------------------------------------//
 
-//Functions that SAVES or REMOVES checkmarks from Local Storage
+//SAVE OR REMOVE CHECKMARK FROM LOCAL STORAGE
 
 function saveCheck(string) {
     for (let i = 0; i < itemsArray.length; i++) {
@@ -365,7 +364,7 @@ function removeCheck(string) {
 
 //-------------------------------------------------------------------------------
 
-//Function that assign color to filter buttons based on which one is active
+//ASSIGN FILTER BUTTON COLOR
 
 function filterColor(target) {
     if (target.id === "all-filter") {
@@ -385,7 +384,7 @@ function filterColor(target) {
 
 //---------------------------------------------------------------
 
-//Function that toogles between light and dark mode
+//TOGGLE BETWEEN LIGHT AND DARK MODE
 
  function lightAndDarkMode(mode) {
     if (mode === "sun") {
@@ -393,6 +392,7 @@ function filterColor(target) {
         moon.style.display = "block";
         body.style.backgroundImage = "url(images/bg-mobile-light.jpg)";
         todoInput.style.backgroundColor = "white";
+        input.style.color = "black";
         input.style.backgroundColor = "white";
         table.style.backgroundColor = "white";
         allFilter.style.backgroundColor = "white";
@@ -411,6 +411,7 @@ function filterColor(target) {
         sun.style.display = "block";
         body.style.backgroundImage = "url(images/bg-mobile-dark.jpg)";
         todoInput.style.backgroundColor = "hsl(237, 14%, 26%)";
+        input.style.color = "white";
         input.style.backgroundColor = "hsl(237, 14%, 26%)";
         table.style.backgroundColor = "hsl(237, 14%, 26%)";
         allFilter.style.backgroundColor = "hsl(237, 14%, 26%)";
