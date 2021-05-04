@@ -112,6 +112,7 @@ header h1{
     border: solid 2px hsl(237, 14%, 26%);
 }
 
+
 /*----------------------------------------------------*/
 
 /*--------------------------------------------------------------------------------------------*/
@@ -232,9 +233,6 @@ header h1{
         background-image: url(images/bg-desktop-dark.jpg) !important;
     }
 
-    button {
-        cursor: pointer;
-    }
 
     #filter {
         display: grid;
@@ -253,5 +251,11 @@ header h1{
 
     #all-filter, #active-filter, #completed-filter {
         background-color: transparent !important;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    #todo-input input {
+        width: 75%;
     }
 }
