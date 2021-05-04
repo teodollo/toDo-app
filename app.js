@@ -1,14 +1,16 @@
 
 //--------------------DOM ELEMENTS-------------------------//
-
-
+const body = document.querySelector("BODY");
+const sun = document.getElementById("sun");
 const todoInput = document.getElementById("todo-input");
 const input = document.getElementById("input");
 const list = document.getElementById("todo-list");
+const table = document.querySelector(".todo-table");
 const todo = document.getElementsByClassName("todo");
 const endList = document.getElementById("end-of-list")
 const html = document.querySelector("HTML");
 const filter = document.getElementById("filter");
+const filterButtons = document.querySelectorAll("#filter button");
 const allFilter = document.getElementById("all-filter");
 const activeFilter = document.getElementById("active-filter");
 const completedFilter = document.getElementById("completed-filter");
@@ -16,6 +18,18 @@ const completedFilter = document.getElementById("completed-filter");
 //------------------------------------------------------------//
 //------------------TestArea-----------------------------------//
 
+document.addEventListener('click', (e) =>{
+    if (e.target.id === "sun") {
+        todoInput.style.backgroundColor = "white";
+        input.style.backgroundColor = "white";
+        table.style.backgroundColor = "white";
+        allFilter.style.backgroundColor = "white";
+        activeFilter.style.backgroundColor = "white";
+        completedFilter.style.backgroundColor = "white";
+        body.style.backgroundColor = "white";
+        todo.style.color = "black";
+    }
+})
 
 
 
@@ -96,7 +110,15 @@ window.addEventListener('click', () => {
 
 todoInput.addEventListener('submit', (e) =>{
     e.preventDefault();
-
+    
+    for (let i = 0; i < itemsArray.length; i++){
+        if ( input.value === itemsArray[i][0]) {
+            window.alert("task is already added")
+            input.value = "";
+            e.stopPropagation();
+        }
+    }
+    
     if(input.value) {
       itemsArray.push([input.value, "check"]);
       localStorage.setItem('items', JSON.stringify(itemsArray));
@@ -137,7 +159,7 @@ list.addEventListener('dragend', () => {
 });
 
 //drag and drop reorder listener for touch screen
-list.addEventListener('touchend', () => {
+list.addEventListener('touchmove', () => {
     itemsArray = [];
     reorderList();
     itemsArray.pop();
