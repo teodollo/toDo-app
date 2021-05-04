@@ -21,6 +21,7 @@ const completedFilter = document.getElementById("completed-filter");
 
 
 
+
 //------------LOCAL STORAGE-------------------//
 
 let itemsArray = localStorage.getItem('items')
@@ -128,12 +129,19 @@ filter.addEventListener('click', (e) => {
 
 //Event listener that listens for drag and drop which reoders list
 list.addEventListener('dragstart', function(e)  {
-    
     itemsArray = []; //clearing array, before reordering of list
-   
 });
 list.addEventListener('dragend', () => {
     reorderList(); //function that reorders list in LocalStorage after drag and drop event
+    localStorage.setItem('items', JSON.stringify(itemsArray)); //pushing itemsArray into LocalStorage
+});
+
+//drag and drop reorder listener for touch screen
+list.addEventListener('touchend', () => {
+    itemsArray = [];
+    reorderList();
+    itemsArray.pop();
+    localStorage.setItem('items', JSON.stringify(itemsArray));
 });
 
 //-------------------------------------------------------------------------------
@@ -206,7 +214,7 @@ function reorderList() {
        const inputValue = list.children[i].childNodes[1].textContent;
        const checkValue = list.children[i].childNodes[0].className;
        itemsArray.push([inputValue, checkValue]);
-       localStorage.setItem('items', JSON.stringify(itemsArray));
+
     }
 }
 
