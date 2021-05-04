@@ -23,9 +23,9 @@ const completedFilter = document.getElementById("completed-filter");
 
 
 
-//------------LOCAL STORAGE-------------------//
+//--------------------LOCAL STORAGE----------------------------//
 
-//----------------List Storage
+//---------------------List Storage
 
 let itemsArray = localStorage.getItem('items')
   ? JSON.parse(localStorage.getItem('items'))
@@ -62,7 +62,7 @@ lightAndDarkMode(moonData);
 //--------------------EVENT LISTENER------------------------//
 
 
-//Toggle Light And Dark Mode
+//-----------Toggle Light And Dark Mode
 
 document.addEventListener('click', (e) =>{
     if(e.target.id === "sun") {
@@ -78,7 +78,7 @@ document.addEventListener('click', (e) =>{
 
 //--------------------------------------------
 
-//when theres a submit or click EVENT in window, the check items left function is activated
+//-------Window Submit Or Click Event Listener
 
 window.addEventListener('submit', () => {
     itemsLeft();
@@ -91,7 +91,7 @@ window.addEventListener('click', () => {
 
 //-----------------------------------------------------------------
 
-//LIST CREATE Event Listener
+//---------------LIST CREATE Event Listener
 
 todoInput.addEventListener('submit', (e) =>{
     e.preventDefault();
@@ -117,7 +117,7 @@ todoInput.addEventListener('submit', (e) =>{
 
 //---------------------------------------------------
 
-//List item interactions: Checking, unchecking and removal
+//------------Checking AND Removal Event Listener
 
 list.addEventListener('click', (e) => {
     if (e.target.className === "check") {
@@ -140,7 +140,8 @@ list.addEventListener('click', (e) => {
   
 //------------------------------------------------------
 
-//Event listener that listens for drag and drop which reoders list
+//-----------------LIST REORDERING EVENT LISTENER
+
 list.addEventListener('dragstart', function(e)  {
     itemsArray = []; //clearing array, before reordering of list
 });
@@ -159,7 +160,7 @@ list.addEventListener('touchmove', () => {
 
 //-------------------------------------------------------------------------------
 
-//Clear Completed
+//------------------------Clear Completed
 
 endList.addEventListener('click', (e) => {
     if ( e.target.id === "end-button" ) {
@@ -173,8 +174,8 @@ endList.addEventListener('click', (e) => {
 //-------------------------------------------------------
     
 
-//Event Listener for filter section where you filter out by all, active or completed tasks
-//Also changes color on filter text based on what filter is active
+//------------------FILTER EVENT LISTENER
+
 filter.addEventListener('click', (e) => {
     if (e.target.id === "all-filter") {
         showAll();
