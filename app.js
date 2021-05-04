@@ -2,12 +2,15 @@
 //--------------------DOM ELEMENTS-------------------------//
 const body = document.querySelector("BODY");
 const sun = document.getElementById("sun");
+const moon = document.getElementById("moon");
 const todoInput = document.getElementById("todo-input");
 const input = document.getElementById("input");
 const list = document.getElementById("todo-list");
 const table = document.querySelector(".todo-table");
 const todo = document.getElementsByClassName("todo");
+const todoP = document.getElementsByClassName("white");
 const endList = document.getElementById("end-of-list")
+const endListButton = document.querySelector("#end-of-list button")
 const html = document.querySelector("HTML");
 const filter = document.getElementById("filter");
 const filterButtons = document.querySelectorAll("#filter button");
@@ -19,22 +22,9 @@ const completedFilter = document.getElementById("completed-filter");
 //------------------TestArea-----------------------------------//
 
 document.addEventListener('click', (e) =>{
-    if (e.target.id === "sun") {
-        todoInput.style.backgroundColor = "white";
-        input.style.backgroundColor = "white";
-        table.style.backgroundColor = "white";
-        allFilter.style.backgroundColor = "white";
-        activeFilter.style.backgroundColor = "white";
-        completedFilter.style.backgroundColor = "white";
-        body.style.backgroundColor = "white";
-        todo.style.color = "black";
-    }
+
+  lightAndDarkMode(e);
 })
-
-
-
-
-
 
 //------------LOCAL STORAGE-------------------//
 
@@ -118,7 +108,7 @@ todoInput.addEventListener('submit', (e) =>{
             e.stopPropagation();
         }
     }
-    
+
     if(input.value) {
       itemsArray.push([input.value, "check"]);
       localStorage.setItem('items', JSON.stringify(itemsArray));
@@ -192,6 +182,7 @@ function createLi(todo, check = "check") {
     //the p tag that will have the input value stored in it
     const p = document.createElement("P");
     p.textContent = todo;
+    p.className = "white";
     //adding input value to list
     li.appendChild(p);
     
@@ -229,7 +220,7 @@ function itemsLeft() {
 
 //-------------------------------------------------------
 
-//Function that checks for order of list items and pushes the new order to LocalStorage
+//Function that checks for order of list items and pushes the new order to itemsArray
 
 function reorderList() {
     for (let i = 0; i < list.children.length; i++) {
@@ -266,7 +257,7 @@ function clearCompleted() {
 
 
 
-//Function that shows all todo tasks completed and active alike//
+//Function that shows all tasks//
 
 function showAll() {
     for (let i = 0; i < list.children.length; i++) {
@@ -279,7 +270,7 @@ function showAll() {
 //----------------------------------------------------------------//
 
 
-//Function to show all active todo tasks and filter out completed tasks
+//Function to shows only active todo tasks
 
 function showActive() {
     for (let i = 0; i < list.children.length; i++) {
@@ -364,5 +355,42 @@ function filterColor(target) {
 
 //---------------------------------------------------------------
 
+//Function that toogles between light and dark mode
+
+ function lightAndDarkMode(e) {
+    if (e.target.id === "sun") {
+        sun.style.display = "none";
+        moon.style.display = "block";
+        body.style.backgroundImage = "url(images/bg-mobile-light.jpg)";
+        todoInput.style.backgroundColor = "white";
+        input.style.backgroundColor = "white";
+        table.style.backgroundColor = "white";
+        allFilter.style.backgroundColor = "white";
+        activeFilter.style.backgroundColor = "white";
+        completedFilter.style.backgroundColor = "white";
+        body.style.backgroundColor = "white";
+        endListButton.style.backgroundColor = "white";
+        for (let i = 0; i < list.children.length; i++) {
+            todoP[i].style.color = "black";
+        }
+    } else if (e.target.id === "moon") {
+        moon.style.display = "none";
+        sun.style.display = "block";
+        body.style.backgroundImage = "url(images/bg-mobile-dark.jpg)";
+        todoInput.style.backgroundColor = "hsl(237, 14%, 26%)";
+        input.style.backgroundColor = "hsl(237, 14%, 26%)";
+        table.style.backgroundColor = "hsl(237, 14%, 26%)";
+        allFilter.style.backgroundColor = "hsl(237, 14%, 26%)";
+        activeFilter.style.backgroundColor = "hsl(237, 14%, 26%)";
+        completedFilter.style.backgroundColor = "hsl(237, 14%, 26%)";
+        body.style.backgroundColor = "hsl(237, 14%, 26%)";
+        endListButton.style.backgroundColor = "hsl(237, 14%, 26%)";
+        for (let i = 0; i < list.children.length; i++) {
+            todoP[i].style.color = "white";
+        }
+    }
+  }
+
+  //--------------------------------------------------------------------------
     
   
