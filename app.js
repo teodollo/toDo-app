@@ -14,6 +14,13 @@ const activeFilter = document.getElementById("active-filter");
 const completedFilter = document.getElementById("completed-filter");
 
 //------------------------------------------------------------//
+//------------------TestArea-----------------------------------//
+
+
+
+
+
+
 //------------LOCAL STORAGE-------------------//
 
 let itemsArray = localStorage.getItem('items')
@@ -94,6 +101,9 @@ todoInput.addEventListener('submit', (e) =>{
       localStorage.setItem('items', JSON.stringify(itemsArray));
       createLi(input.value);
     }
+    showCompleted();
+    showAll();
+    showActive();
     input.value = "";
 });
 
@@ -116,6 +126,17 @@ filter.addEventListener('click', (e) => {
 
 //--------------------------------------------------------------------------------
 
+//Event listener that listens for drag and drop which reoders list
+list.addEventListener('dragstart', function(e)  {
+    
+    itemsArray = []; //clearing array, before reordering of list
+   
+});
+list.addEventListener('dragend', () => {
+    reorderList(); //function that reorders list in LocalStorage after drag and drop event
+});
+
+//-------------------------------------------------------------------------------
 
 
 //--------------------------FUNCTIONS----------------------- //
@@ -178,6 +199,18 @@ function itemsLeft() {
 
 //-------------------------------------------------------
 
+//Function that checks for order of list items and pushes the new order to LocalStorage
+
+function reorderList() {
+    for (let i = 0; i < list.children.length; i++) {
+       const inputValue = list.children[i].childNodes[1].textContent;
+       const checkValue = list.children[i].childNodes[0].className;
+       itemsArray.push([inputValue, checkValue]);
+       localStorage.setItem('items', JSON.stringify(itemsArray));
+    }
+}
+
+//-----------------------------------------------------------------------------
 
 //Function that clears checked list items
 
