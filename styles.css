@@ -154,7 +154,7 @@ header h1{
 .todo p{
     margin:auto auto auto 0;
     text-align: left;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 400;
     color: white
 }
@@ -225,4 +225,33 @@ header h1{
 
 #completed-filter{
     text-align: left;
+}
+
+@media screen and (min-width: 768px) {
+    .dark {
+        background-image: url(images/bg-desktop-dark.jpg) !important;
+    }
+
+    button {
+        cursor: pointer;
+    }
+
+    #filter {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1.4fr;
+        bottom: 5.5vh;
+        position: relative;
+        margin-top: 0;
+        background: transparent;
+        border-radius: 5px;
+        box-shadow: none; 
+        margin-left: auto;
+        margin-right: auto;
+        width: 40%;
+        background-color: transparent !important;
+    }
+
+    #all-filter, #active-filter, #completed-filter {
+        background-color: transparent !important;
+    }
 }
