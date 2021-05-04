@@ -76,7 +76,7 @@ document.addEventListener('click', (e) =>{
     }
 })
 
-//--------------------------------------------
+
 
 //-------Window Submit Or Click Event Listener
 
@@ -89,7 +89,7 @@ window.addEventListener('click', () => {
     itemsLeft();
 });
 
-//-----------------------------------------------------------------
+
 
 //---------------LIST CREATE Event Listener
 
@@ -115,7 +115,7 @@ todoInput.addEventListener('submit', (e) =>{
     input.value = "";
 });
 
-//---------------------------------------------------
+
 
 //------------Checking AND Removal Event Listener
 
@@ -138,9 +138,9 @@ list.addEventListener('click', (e) => {
     }
 });
   
-//------------------------------------------------------
 
-//-----------------LIST REORDERING EVENT LISTENER
+
+//-----------------List Reordering Event Listener
 
 list.addEventListener('dragstart', function(e)  {
     itemsArray = []; //clearing array, before reordering of list
@@ -158,7 +158,7 @@ list.addEventListener('touchmove', () => {
     localStorage.setItem('items', JSON.stringify(itemsArray));
 });
 
-//-------------------------------------------------------------------------------
+
 
 //------------------------Clear Completed
 
@@ -171,10 +171,10 @@ endList.addEventListener('click', (e) => {
     }
 });
 
-//-------------------------------------------------------
+
     
 
-//------------------FILTER EVENT LISTENER
+//------------------Filter Event Listener
 
 filter.addEventListener('click', (e) => {
     if (e.target.id === "all-filter") {
@@ -193,11 +193,11 @@ filter.addEventListener('click', (e) => {
 
 
 
-//--------------------------FUNCTIONS----------------------- //
+//--------------------------FUNCTIONS----------------------------//
 
 itemsLeft();
 
-//CREATE LIST ELEMENT
+//----------------CREATE LIST ELEMENT
 
 function createLi(todo, check = "check") {
     //create a list item and give it classname todo
@@ -233,10 +233,10 @@ function createLi(todo, check = "check") {
     list.appendChild(li);
 }
 
-//-----------------------------------------------------------
 
 
-//ITEMS LEFT IN LIST
+
+//---------------ITEMS LEFT IN LIST
 
 function itemsLeft() {
     const endP = endList.children[0];
@@ -251,9 +251,9 @@ function itemsLeft() {
     }
 }
 
-//-------------------------------------------------------
 
-//REORDER LIST
+
+//------------------REORDER LIST
 
 function reorderList() {
     for (let i = 0; i < list.children.length; i++) {
@@ -264,9 +264,9 @@ function reorderList() {
     }
 }
 
-//-----------------------------------------------------------------------------
 
-//CLEAR CHECKED ITEMS
+
+//--------------CLEAR CHECKED ITEMS
 
 function clearCompleted() {
     const endClear = endList.children[1];
@@ -285,11 +285,8 @@ function clearCompleted() {
 }
 }
 
-//-------------------------------------------------------------
 
-
-
-//SHOW ALL TASKS
+//--------------SHOW ALL TASKS
 
 function showAll() {
     for (let i = 0; i < list.children.length; i++) {
@@ -299,9 +296,8 @@ function showAll() {
     }
 }
 
-//----------------------------------------------------------------//
 
-//SHOW ACTIVE TASKS
+//--------------SHOW ACTIVE TASKS
 
 function showActive() {
     for (let i = 0; i < list.children.length; i++) {
@@ -313,9 +309,8 @@ function showActive() {
     }
 }
 
-//------------------------------------------------------------------//
 
-//SHOW COMPLETED TASKS
+//---------------SHOW COMPLETED TASKS
 
 function showCompleted() {
     for (let i = 0; i < list.children.length; i++) {
@@ -326,9 +321,9 @@ function showCompleted() {
         }
     }
 }
-//--------------------------------------------------------------------
 
-//REMOVE LIST ITEMS FROM LOCAL STORAGE
+
+//------------REMOVE LIST ITEMS FROM LOCAL STORAGE
   
 function removeItemLocalStorage(string) {
     for (let i = 0; i < itemsArray.length; i++) {
@@ -340,9 +335,8 @@ function removeItemLocalStorage(string) {
     }
 }
 
-//-------------------------------------------------------------------//
 
-//SAVE OR REMOVE CHECKMARK FROM LOCAL STORAGE
+//---------SAVE OR REMOVE CHECKMARK FROM LOCAL STORAGE
 
 function saveCheck(string) {
     for (let i = 0; i < itemsArray.length; i++) {
@@ -363,9 +357,8 @@ function removeCheck(string) {
     }
 }
 
-//-------------------------------------------------------------------------------
 
-//ASSIGN FILTER BUTTON COLOR
+//-------------ASSIGN FILTER BUTTON COLOR
 
 function filterColor(target) {
     if (target.id === "all-filter") {
@@ -383,9 +376,9 @@ function filterColor(target) {
     }
 };
 
-//---------------------------------------------------------------
 
-//TOGGLE BETWEEN LIGHT AND DARK MODE
+
+//----------TOGGLE BETWEEN LIGHT AND DARK MODE
 
  function lightAndDarkMode(mode) {
     if (mode === "sun") {
