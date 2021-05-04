@@ -20,11 +20,12 @@ const activeFilter = document.getElementById("active-filter");
 const completedFilter = document.getElementById("completed-filter");
 
 //------------------------------------------------------------//
-//------------------TestArea-----------------------------------//
 
 
 
 //------------LOCAL STORAGE-------------------//
+
+//----------------List State Storage-----------//
 
 let itemsArray = localStorage.getItem('items')
   ? JSON.parse(localStorage.getItem('items'))
@@ -39,6 +40,21 @@ data.forEach((item) => {
 
 //--------------------------------------------//
 
+//------------------Light And Dark Mode Storage-----------------------------------//
+
+let moonArray = localStorage.getItem('moon')
+  ? JSON.parse(localStorage.getItem('moon'))
+  : [];
+localStorage.setItem('moon', JSON.stringify(moonArray));
+
+let moonData = JSON.parse(localStorage.getItem("moon"));
+
+localStorage.setItem('moon', JSON.stringify(moonArray) );
+
+lightAndDarkMode(moonData[0]);
+
+//--------------------------------------------//
+//---------------------------------------------------------------//
 
 //--------------------EVENT LISTENER------------------------//
 
@@ -59,7 +75,16 @@ endList.addEventListener('click', (e) => {
 //Toggle light and dark mode
 
 document.addEventListener('click', (e) =>{
-    lightAndDarkMode(e);
+    if(e.target.id === "sun") {
+        moonArray = ["sun"];
+        localStorage.setItem('moon', JSON.stringify(moonArray));
+        lightAndDarkMode("sun");
+    } if (e.target.id === "moon") {
+        moonArray = ["moon"];
+        localStorage.setItem('moon', JSON.stringify(moonArray));
+        lightAndDarkMode("moon");
+    }
+    
 })
 
 //--------------------------------------------
@@ -362,8 +387,8 @@ function filterColor(target) {
 
 //Function that toogles between light and dark mode
 
- function lightAndDarkMode(e) {
-    if (e.target.id === "sun") {
+ function lightAndDarkMode(mode) {
+    if (mode === "sun") {
         sun.style.display = "none";
         moon.style.display = "block";
         body.style.backgroundImage = "url(images/bg-mobile-light.jpg)";
@@ -380,7 +405,8 @@ function filterColor(target) {
             todo[i].style.borderBottomColor = "hsl(233, 13%, 87%)";
             todo[i].childNodes[0].style.borderColor = "hsl(233, 13%, 87%)";
         }
-    } else if (e.target.id === "moon") {
+    
+    } else if (mode === "moon") {
         moon.style.display = "none";
         sun.style.display = "block";
         body.style.backgroundImage = "url(images/bg-mobile-dark.jpg)";
