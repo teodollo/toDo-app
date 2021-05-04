@@ -123,10 +123,13 @@ list.addEventListener('click', (e) => {
     if (e.target.className === "check") {
         e.target.className = "checked";
         saveCheck(e.target.nextElementSibling.textContent);
+        e.target.nextElementSibling.style.setProperty('text-decoration', 'line-through')
+        e.target.nextElementSibling.style.color = "grey"
     }
     else if (e.target.parentNode.className === "checked") {
         e.target.parentNode.className = "check";
         removeCheck(e.target.parentNode.nextElementSibling.textContent);
+        e.target.parentNode.nextElementSibling.style.setProperty('text-decoration', 'none')
     }
     //when cross is clicked list item removed from ul
     else if ( e.target.parentNode.className === "cross") {
