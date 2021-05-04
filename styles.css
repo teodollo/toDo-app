@@ -148,6 +148,7 @@ header h1{
     border-bottom: solid 1px hsl(233, 14%, 35%);
     margin-top: auto;
     list-style: none;
+
 }
 
 .todo p{
@@ -155,7 +156,7 @@ header h1{
     text-align: left;
     font-size: 13px;
     font-weight: 400;
-    color: white;
+    color: white
 }
 
 /* Items left and Clear Completed----*/
