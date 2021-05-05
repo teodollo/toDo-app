@@ -83,6 +83,7 @@ document.addEventListener('click', (e) =>{
 window.addEventListener('submit', () => {
     itemsLeft();
     lightAndDarkMode(moonArray);
+    lineThroughText();
 });
 
 window.addEventListener('click', () => {
@@ -110,9 +111,7 @@ todoInput.addEventListener('submit', (e) =>{
       localStorage.setItem('items', JSON.stringify(itemsArray));
       createLi(input.value);
     }
-    showCompleted();
-    showAll();
-    showActive();
+
     input.value = "";
 });
 
