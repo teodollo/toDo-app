@@ -87,6 +87,7 @@ window.addEventListener('submit', () => {
 
 window.addEventListener('click', () => {
     itemsLeft();
+    lineThroughText();
 });
 
 
@@ -199,6 +200,7 @@ filter.addEventListener('click', (e) => {
 //--------------------------FUNCTIONS----------------------------//
 
 itemsLeft();
+lineThroughText();
 
 //----------------CREATE LIST ELEMENT
 
@@ -398,6 +400,10 @@ function filterColor(target) {
         body.style.backgroundColor = "white";
         endListButton.style.backgroundColor = "white";
         for (let i = 0; i < list.children.length; i++) {
+            if (todo[i].childNodes[0].className === "ckecked") {
+                todoP[i].style.color = "grey";
+                todoP[i].style.setProperty('text-decoration', 'line-through')
+            }
             todoP[i].style.color = "black";
             todo[i].style.borderBottomColor = "hsl(233, 13%, 87%)";
             todo[i].childNodes[0].style.borderColor = "hsl(233, 13%, 87%)";
@@ -417,6 +423,7 @@ function filterColor(target) {
         body.style.backgroundColor = "hsl(235, 24%, 19%)";
         endListButton.style.backgroundColor = "hsl(237, 14%, 26%)";
         for (let i = 0; i < list.children.length; i++) {
+
             todoP[i].style.color = "white";
             todo[i].style.borderBottomColor = "hsl(233, 14%, 35%)";
             todo[i].childNodes[0].style.borderColor = "hsl(233, 14%, 35%)";
@@ -426,4 +433,19 @@ function filterColor(target) {
 
   //--------------------------------------------------------------------------
     
-  
+  //---------------Line Through Text 
+
+  function lineThroughText() {
+      for (let i = 0; i < list.children.length; i++) {
+        if (todo[i].childNodes[0].className === "ckecked") {
+            todoP[i].style.color = "grey";
+            todoP[i].style.setProperty('text-decoration', 'line-through')
+        } else if (todo[i].childNodes[0].className === "check" && moonArray === "sun") {
+            todoP[i].style.color = "black";
+            todoP[i].style.setProperty('text-decoration', 'none')
+        } else if (todo[i].childNodes[0].className === "check" && moonArray === "moon") {
+            todoP[i].style.color = "white";
+            todoP[i].style.setProperty('text-decoration', 'none')
+        }
+      }
+  }
