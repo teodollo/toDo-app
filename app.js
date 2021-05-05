@@ -97,8 +97,8 @@ window.addEventListener('click', () => {
 todoInput.addEventListener('submit', (e) =>{
     e.preventDefault();
     
-    for (let i = 0; i < itemsArray.length; i++){
-        if ( input.value === itemsArray[i][0]) {
+    for (let list of itemsArray){
+        if ( input.value === list[0]) {
             window.alert("task is already added")
             input.value = "";
             e.stopPropagation();
@@ -259,9 +259,9 @@ function itemsLeft() {
 //------------------REORDER LIST
 
 function reorderList() {
-    for (let i = 0; i < list.children.length; i++) {
-       const inputValue = list.children[i].childNodes[1].textContent;
-       const checkValue = list.children[i].childNodes[0].className;
+    for (let order of list.children) {
+       const inputValue = order.childNodes[1].textContent;
+       const checkValue = order.childNodes[0].className;
        itemsArray.push([inputValue, checkValue]);
 
     }
@@ -277,8 +277,8 @@ function clearCompleted() {
  
     
     if (endClear) {
-        for (let i = 0; i <= list.children.length - 1; i++) {
-            const li = list.children[i];
+        for (let completed of list.children) {
+            const li = completed;
             const liCheck = li.childNodes[0];
         if ( liCheck.className === "checked" ) {
             list.removeChild(liCheck.parentNode);
@@ -292,9 +292,9 @@ function clearCompleted() {
 //--------------SHOW ALL TASKS
 
 function showAll() {
-    for (let i = 0; i < list.children.length; i++) {
-        if (list.children[i].style.display === "none") {
-            list.children[i].style.display = "grid";
+    for (let check of list.children) {
+        if (check.style.display === "none") {
+            check.style.display = "grid";
         }
     }
 }
@@ -303,11 +303,11 @@ function showAll() {
 //--------------SHOW ACTIVE TASKS
 
 function showActive() {
-    for (let i = 0; i < list.children.length; i++) {
-        if (list.children[i].childNodes[0].className === "checked") {
-            list.children[i].style.display = "none";
+    for (let check of list.children) {
+        if (check.childNodes[0].className === "checked") {
+            check.style.display = "none";
         } else {
-            list.children[i].style.display = "grid";
+            check.style.display = "grid";
         }
     }
 }
@@ -316,11 +316,11 @@ function showActive() {
 //---------------SHOW COMPLETED TASKS
 
 function showCompleted() {
-    for (let i = 0; i < list.children.length; i++) {
-        if (list.children[i].childNodes[0].className === "check") {
-            list.children[i].style.display = "none";
+    for (let check of list.children) {
+        if (check.childNodes[0].className === "check") {
+            check.style.display = "none";
         } else {
-            list.children[i].style.display = "grid";
+            check.style.display = "grid";
         }
     }
 }
