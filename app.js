@@ -124,13 +124,10 @@ list.addEventListener('click', (e) => {
     if (e.target.className === "check") {
         e.target.className = "checked";
         saveCheck(e.target.nextElementSibling.textContent);
-        e.target.nextElementSibling.style.setProperty('text-decoration', 'line-through')
-        e.target.nextElementSibling.style.color = "grey"
     }
     else if (e.target.parentNode.className === "checked") {
         e.target.parentNode.className = "check";
         removeCheck(e.target.parentNode.nextElementSibling.textContent);
-        e.target.parentNode.nextElementSibling.style.setProperty('text-decoration', 'none')
     }
     //when cross is clicked list item removed from ul
     else if ( e.target.parentNode.className === "cross") {
@@ -140,6 +137,7 @@ list.addEventListener('click', (e) => {
         crossList.removeChild(crossLi);
         removeItemLocalStorage(crossLi);
     }
+    //lineThroughText();
 });
   
 
@@ -437,13 +435,13 @@ function filterColor(target) {
 
   function lineThroughText() {
       for (let i = 0; i < list.children.length; i++) {
-        if (todo[i].childNodes[0].className === "ckecked") {
+        if (todo[i].childNodes[0].className === "checked") {
             todoP[i].style.color = "grey";
             todoP[i].style.setProperty('text-decoration', 'line-through')
-        } else if (todo[i].childNodes[0].className === "check" && moonArray === "sun") {
+        } else if (todo[i].childNodes[0].className === "check" && moon.style.display === "block") {
             todoP[i].style.color = "black";
             todoP[i].style.setProperty('text-decoration', 'none')
-        } else if (todo[i].childNodes[0].className === "check" && moonArray === "moon") {
+        } else if (todo[i].childNodes[0].className === "check" && sun.style.display === "block") {
             todoP[i].style.color = "white";
             todoP[i].style.setProperty('text-decoration', 'none')
         }
