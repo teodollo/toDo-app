@@ -169,13 +169,13 @@ header h1{
     grid-template-columns: 1fr 1fr;
     column-gap: 1vw;
     justify-content: space-between;
-    padding-top: 2vh;
-    padding-bottom: 2vh;
+
 }
 
 #end-of-list p{
     margin-right: auto;
     margin-left: 8%;
+    padding: 2vh 0;
 }
 
 #end-of-list button{
@@ -186,6 +186,7 @@ header h1{
     background-color: hsl(237, 14%, 26%);
     outline: none;
     height: 100%;
+    padding: 2vh 0;
 }
 
 
@@ -227,9 +228,11 @@ header h1{
 #completed-filter{
     text-align: left;
 }
-
-.sortable-chosen, sortable-chosen.sortable-ghost {
+.sortable-drag{
     opacity: 0;
+}
+.sortable-chosen {
+    opacity: 1;
 }
 .sortable-ghost {
   background-color: transparent;
@@ -259,6 +262,10 @@ header h1{
 
     #all-filter, #active-filter, #completed-filter {
         background-color: transparent !important;
+    }
+
+    .checked img{
+        transform: scale(1.4);
     }
 }
 
