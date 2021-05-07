@@ -234,10 +234,10 @@ header h1{
 .sortable-chosen {
     opacity: 1;
 }
-.sortable-ghost {
-  background-color: transparent;
-  opacity: 1;
+.todo sortable-chosen sortable-ghost{
+    opacity: 0;
 }
+
 
 @media screen and (min-width: 768px) {
     .dark {

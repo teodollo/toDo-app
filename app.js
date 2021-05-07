@@ -19,8 +19,8 @@ const allFilter = document.getElementById("all-filter");
 const activeFilter = document.getElementById("active-filter");
 const completedFilter = document.getElementById("completed-filter");
 
+const ghost = document.getElementsByClassName('todo sortable-chosen sortable-drag')
 //------------------------------------------------------------//
-
 
 
 //--------------------LOCAL STORAGE----------------------------//
@@ -428,7 +428,6 @@ function filterColor(target) {
     }
   }
 
-  //--------------------------------------------------------------------------
     
   //---------------Line Through Text 
 
